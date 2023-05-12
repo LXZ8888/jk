@@ -1,0 +1,26 @@
+-
+   args:
+         username: admin
+         password: '123456'
+   apiName: login
+   method: post
+   validate:
+-
+    args:
+         username: admin
+         password:  '123456'
+    apiName: login
+    method: post
+    validate:
+-
+   args:
+          username: admin
+          password: '123456'
+   apiName: login
+   method: post
+   validate:
+#-
+#   args:
+#   apiName: users
+#   method: get
+
