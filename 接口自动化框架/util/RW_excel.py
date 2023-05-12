@@ -11,15 +11,18 @@ class ExcelWR():
     def readEx(self):
         sheets = self.excel.sheet_names()  # 2、 获取excel表格所有的sheet工作表，返回的是列表
         # print(sheets)
-        sheet = self.excel.sheet_by_index(0)  # 第一个工作表
-        rows, cols = sheet.nrows, sheet.ncols
-        # print(rows,cols)
         datas = []
-        for i in range(1, rows):  # 从第二行开始，2,3,4,5,6。rows为6。 arr[5]刚好是最后一行
-            value = sheet.row_values(i)
-            # print(value)
-            datas.append(value)
-            # print(datas)
+        for s in range(len(sheets)):
+            # print(s)
+            sheet = self.excel.sheet_by_index(s)  # 第一个工作表
+            rows, cols = sheet.nrows, sheet.ncols
+            # print(rows,cols)
+
+            for i in range(1, rows):  # 从第二行开始，2,3,4,5,6。rows为6。 arr[5]刚好是最后一行
+                value = sheet.row_values(i)
+                # print(value)
+                datas.append(value)
+                # print(datas)
         return datas
 
     def write(self):

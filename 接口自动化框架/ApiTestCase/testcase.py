@@ -1,7 +1,10 @@
+import json
+
 import requests
 import unittest
 from util.RW_excel import ExcelWR
 from ddt import ddt, data, unpack, file_data
+from util.HttpRequest import HttpRequest
 
 E = ExcelWR(filePath=r'C:\Users\1967668484\Desktop\jk-sj.xlsx')  # 路径
 caseDatas = E.readEx()
@@ -9,6 +12,7 @@ caseDatas = E.readEx()
 '''假设性原则：所有的用例都需要加上auth认证
         所有的用例都需要加上token
 '''
+
 
 # users = [
 #     ('admin', '123456'),
@@ -24,9 +28,7 @@ class Test(unittest.TestCase):
     @classmethod
     def setUpClass(self) -> None:
         '''所有用例的前置操作：创建一个会话，统一设置headers参数'''
-        self.s = requests.session()
-        self.s.auth = ('admin', '123456')
-        self.s.headers.update({"Token": "qingfengtest"})
+        self.s = HttpRequest()
 
     # def test01(self):
     #     '''测试用例1'''
@@ -83,31 +85,34 @@ class Test(unittest.TestCase):
     1、把接口的入参 参数化
     2、把接口的名称（login） ,接口的请求方式，断言等，参数化
     '''
+
     @data(*caseDatas)
     # @file_data(r'D:\1967668484\git-资料测试总理-已提交\接口自动化\接口自动化框架\config\apiData.yaml')
-    def test04(self, caseData):  # 3定义变量接收数据
+    def testcase(self, caseData):  # 3定义变量接收数据
         '''登录用例:正确的用户名和密码'''
-        print(caseData)
-        # print(datas)
-        # apiName=datas['apiName']
-        # args=datas['args']
-        # method=datas['method']
-        # # print(args)
-        # url='http://127.0.0.1:7001/api/qingfeng/{}'.format(apiName)
-        #
-        #
-        # res=self.s.request(url=url,method=method,json=args)
-        # print(res.json())
+        # print(caseData)
+        apiName = caseData[0]
+        args = caseData[2]
+        # if args:
+        #     args = eval(args)
+            # print(type(args), args)
+        method = caseData[1]
+        rt=caseData[5]
+        url_path = 'http://127.0.0.1:7001/api/qingfeng/{}'.format(apiName)
 
-    # def test05(self):
-    #     '''登录用例:错误的用户名和密码'''
-    #     url_login='http://127.0.0.1:7001/api/qingfeng/login'
-    #     users={
-    #         'username':"adminxxxx",
-    #         'password':"123456xxx"
-    #     }
-    #     res=self.s.request(url=url_login,method='post',json=users)
-    #     print(res.json())
+        res = self.s.sendRequest(url_path=url_path, method=method, args=args,rt=rt)
+        # print(res)
+
+
+# def test05(self):
+#     '''登录用例:错误的用户名和密码'''
+#     url_login='http://127.0.0.1:7001/api/qingfeng/login'
+#     users={
+#         'username':"adminxxxx",
+#         'password':"123456xxx"
+#     }
+#     res=self.s.request(url=url_login,method='post',json=users)
+#     print(res.json())
 
 
 # class Test1(unittest.TestCase):
