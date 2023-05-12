@@ -2,12 +2,14 @@ import json
 
 import requests
 import unittest
-from util.RW_excel import ExcelWR
+from util.RW_excel import get_case
 from ddt import ddt, data, unpack, file_data
 from util.HttpRequest import HttpRequest
 
-E = ExcelWR(filePath=r'C:\Users\1967668484\Desktop\jk-sj.xlsx')  # 路径
-caseDatas = E.readEx()
+# E = ExcelWR(filePath=r'../config/jk-sj.xlsx')  # 路径
+# caseDatas = E.readEx()
+
+caseDatas = get_case()   #所有用例的数据
 
 '''假设性原则：所有的用例都需要加上auth认证
         所有的用例都需要加上token
@@ -98,10 +100,11 @@ class Test(unittest.TestCase):
             # print(type(args), args)
         method = caseData[1]
         rt=caseData[5]
+        tiqu=caseData[6]
         url_path = 'http://127.0.0.1:7001/api/qingfeng/{}'.format(apiName)
 
-        res = self.s.sendRequest(url_path=url_path, method=method, args=args,rt=rt)
-        # print(res)
+        res = self.s.sendRequest(url_path=url_path, method=method, args=args,rt=rt,tiqu=tiqu)
+        print(res)
 
 
 # def test05(self):
