@@ -1,0 +1,8 @@
+2023-05-15 11:53:11,753 testcase.py [line:47] INFO 开始运行第1个用例
+2023-05-15 11:53:11,820 testcase.py [line:56] INFO 第1个用例的断言结果为True
+2023-05-15 11:53:11,822 testcase.py [line:47] INFO 开始运行第2个用例
+2023-05-15 11:53:11,830 testcase.py [line:56] INFO 第2个用例的断言结果为True
+2023-05-15 11:53:11,831 testcase.py [line:47] INFO 开始运行第3个用例
+2023-05-15 11:53:11,896 testcase.py [line:56] INFO 第3个用例的断言结果为True
+2023-05-15 11:53:11,898 testcase.py [line:47] INFO 开始运行第4个用例
+2023-05-15 11:53:12,254 testcase.py [line:47] INFO 开始运行第5个用例
